@@ -1,0 +1,173 @@
+{
+  "name": "addoncrate-studio",
+  "displayName": "AddonCrate Studio",
+  "description": "A powerful toolset for creating and managing Minecraft Bedrock addons.",
+  "version": "0.1.0",
+  "publisher": "lol123love",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lol123love/addoncrate-studio"
+  },
+  "bugs": {
+    "url": "https://addoncrate.com/support"
+  },
+  "homepage": "https://addoncrate.com",
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onView:addoncrateCreatorView",
+    "onCommand:addoncrate-creator.createProject",
+    "onCommand:addoncrate-creator.openProject",
+    "onCommand:addoncrate-creator.importProject",
+    "onCommand:addoncrate-creator.exportProject",
+    "onCommand:addoncrate-creator.createItem",
+    "onCommand:addoncrate-creator.createEntity",
+    "onCommand:addoncrate-creator.createBlock",
+    "onCommand:addoncrate-creator.createLootTable",
+    "onCommand:addoncrate-creator.createFile",
+    "onCustomEditor:addoncrate.modelViewer",
+    "onCustomEditor:addoncrate.recipeEditor"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "addoncrate-creator.createProject",
+        "title": "AddonCrate: Create New Addon Project...",
+        "category": "AddonCrate"
+      },
+      {
+        "command": "addoncrate-creator.openProject",
+        "title": "AddonCrate: Open Project...",
+        "category": "AddonCrate"
+      },
+      {
+        "command": "addoncrate-creator.importProject",
+        "title": "AddonCrate: Import Packs into New Project...",
+        "category": "AddonCrate"
+      },
+      {
+        "command": "addoncrate-creator.exportProject",
+        "title": "AddonCrate: Export Project as .mcaddon",
+        "category": "AddonCrate"
+      },
+      {
+        "command": "addoncrate-creator.setProjectsLocation",
+        "title": "AddonCrate: Set Default Projects Location",
+        "category": "AddonCrate"
+      },
+      {
+        "command": "addoncrate-creator.createFile",
+        "title": "AddonCrate: Create New Addon File...",
+        "category": "AddonCrate"
+      },
+      {
+        "command": "addoncrate-creator.createItem",
+        "title": "AddonCrate: Create New Custom Item...",
+        "category": "AddonCrate"
+      },
+      {
+        "command": "addoncrate-creator.createEntity",
+        "title": "AddonCrate: Create New Custom Entity...",
+        "category": "AddonCrate"
+      },
+      {
+        "command": "addoncrate-creator.createBlock",
+        "title": "AddonCrate: Create New Custom Block...",
+        "category": "AddonCrate"
+      },
+      {
+        "command": "addoncrate-creator.createLootTable",
+        "title": "AddonCrate: Create New Loot Table...",
+        "category": "AddonCrate"
+      },
+      {
+        "command": "addoncrate.clearVanillaCache",
+        "title": "AddonCrate: Clear Vanilla Item Cache"
+      }
+    ],
+    "configuration": {
+      "title": "AddonCrate Studio",
+      "properties": {
+        "addoncrate.projects.location": {
+          "type": "string",
+          "default": "",
+          "description": "The default directory where new addon projects will be saved."
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "addoncrate-creator-sidebar",
+          "title": "AddonCrate Studio",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "addoncrate-creator-sidebar": [
+        {
+          "id": "addoncrateCreatorView",
+          "name": "Creator Panel",
+          "type": "webview"
+        }
+      ]
+    },
+    "customEditors": [
+      {
+        "viewType": "addoncrate.modelViewer",
+        "displayName": "AddonCrate 3D Model Viewer",
+        "selector": [
+          {
+            "filenamePattern": "*.geo.json"
+          }
+        ],
+        "priority": "builtin"
+      },
+      {
+        "viewType": "addoncrate.recipeEditor",
+        "displayName": "AddonCrate Recipe Editor",
+        "selector": [
+          {
+            "filenamePattern": "**/recipes/*.json"
+          }
+        ],
+        "priority": "default"
+      }
+    ],
+    "configurationDefaults": {
+      "workbench.editorAssociations": {
+        "*.geo.json": "addoncrate.modelViewer"
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/jszip": "^3.4.1",
+    "@types/uuid": "^9.0.7",
+    "@types/vscode": "^1.80.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "eslint": "^8.56.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.3",
+    "webpack": "^5.90.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "@vscode/codicons": "^0.0.39",
+    "jszip": "^3.10.1",
+    "uuid": "^9.0.1"
+  }
+}

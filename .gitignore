@@ -1,0 +1,35 @@
+# Dependency directories
+# These are installed by npm and should not be in the repo
+node_modules/
+
+# Build output
+# This is the compiled JavaScript code
+out/
+dist/
+
+# VS Code specific files
+# User-specific settings and workspace state
+.vscode-test/
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.vsix
+
+# OS-generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Other common files
+.env
