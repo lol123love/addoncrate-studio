@@ -150,7 +150,7 @@ export class EntityGenerator {
                 const sourceUri = vscode.Uri.file(this.options.texturePath);
                 await vscode.workspace.fs.copy(sourceUri, textureDestUri, { overwrite: true });
             } else {
-                const defaultTextureUri = vscode.Uri.joinPath(this.extensionUri, 'src', 'assets', 'default_pack_icon.png');
+                const defaultTextureUri = vscode.Uri.joinPath(this.extensionUri, 'dist', 'assets', 'default_pack_icon.png');
                 await vscode.workspace.fs.copy(defaultTextureUri, textureDestUri);
             }
         }

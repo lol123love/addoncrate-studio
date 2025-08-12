@@ -1,15 +1,10 @@
-'use strict';
-
+const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
-//@ts-check
-/** @typedef {import('webpack').Configuration} WebpackConfig **/
-
-/** @type WebpackConfig */
+/** @type {import('webpack').Configuration} */
 const config = {
   target: 'node',
-	mode: 'none',
-
+  mode: 'none',
   entry: './src/extension.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -27,17 +22,24 @@ const config = {
       {
         test: /\.ts$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'ts-loader'
-          }
-        ]
+        use: [{ loader: 'ts-loader' }]
       }
     ]
   },
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        { from: 'src/webview', to: 'webview' },
+        { from: 'src/assets', to: 'assets' },
+        { from: 'media', to: 'media' },
+        { from: './node_modules/@vscode/codicons/dist', to: 'codicons' }
+      ],
+    }),
+  ],
   devtool: 'nosources-source-map',
   infrastructureLogging: {
     level: "log",
   },
 };
+
 module.exports = config;

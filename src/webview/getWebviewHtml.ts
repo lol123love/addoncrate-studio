@@ -1,4 +1,3 @@
-// src/webview/getWebviewHtml.ts
 import * as vscode from 'vscode';
 import { getNonce } from '../utils/getNonce';
 
@@ -22,20 +21,18 @@ export interface IWebviewOptions {
 export function getWebviewHtml(webview: vscode.Webview, extensionUri: vscode.Uri, options: IWebviewOptions): string {
     const nonce = getNonce();
 
-    // --- FIX #1: Correctly generate resource URIs ---
-    // This is the proper way to get URIs that respect the webview's security.
-    const stylesUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'src', 'webview', 'main.css'));
-    const codiconsUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'node_modules', '@vscode/codicons', 'dist', 'codicon.css'));
+    const stylesUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'dist', 'webview', 'main.css'));
 
-    // --- FIX #2: Create a more robust Content Security Policy ---
-    // --- FIX #2: Create a more robust Content Security Policy ---
-const csp = [
-    `default-src 'none'`,
-    `img-src ${webview.cspSource} https: file: data:`,  // ✅ Allow local, remote, and base64 images
-    `style-src ${webview.cspSource} 'unsafe-inline'`,   // Allow main.css and codicon.css
-    `font-src ${webview.cspSource}`,                    // Required for codicon font to load
-    `script-src 'nonce-${nonce}'`,                      // Allow our one inline script block
-].join('; ');
+    // --- THIS IS THE FIXED LINE ---
+    const codiconsUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'dist', 'codicons', 'codicon.css'));
+
+    const csp = [
+        `default-src 'none'`,
+        `img-src ${webview.cspSource} https: file: data:`,
+        `style-src ${webview.cspSource} 'unsafe-inline'`,
+        `font-src ${webview.cspSource}`, // This allows the codicon.ttf font file to load
+        `script-src 'nonce-${nonce}'`,
+    ].join('; ');
 
 
     return `
@@ -59,7 +56,6 @@ const csp = [
         <body>
             ${options.body}
 
-            <!-- All of your other files are correct, the script below will now execute properly -->
             <script nonce="${nonce}">
                 const vscode = acquireVsCodeApi();
                 

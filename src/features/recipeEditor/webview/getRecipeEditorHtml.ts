@@ -3,8 +3,8 @@ import { getNonce } from '../../../utils/getNonce';
 
 export function getRecipeEditorHtml(webview: vscode.Webview, extensionUri: vscode.Uri): string {
 	const nonce = getNonce();
-    const recipeEditorStylesUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'src', 'webview', 'recipe-editor.css'));
-    const codiconsUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'node_modules', '@vscode/codicons', 'dist', 'codicon.css'));
+    const recipeEditorStylesUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'dist', 'webview', 'recipe-editor.css'));
+    const codiconsUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'dist', 'node_modules', '@vscode/codicons', 'dist', 'codicon.css'));
 
 	return `<!DOCTYPE html>
 	<html lang="en">

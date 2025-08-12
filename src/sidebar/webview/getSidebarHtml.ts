@@ -7,11 +7,11 @@ export function getSidebarHtml(webview: vscode.Webview, extensionUri: vscode.Uri
     const nonce = getNonce();
 
     const stylesUri = webview.asWebviewUri(
-        vscode.Uri.joinPath(extensionUri, 'src', 'webview', 'main.css')
+        vscode.Uri.joinPath(extensionUri, 'dist', 'webview', 'main.css')
     );
 
     const logoUri = webview.asWebviewUri(
-        vscode.Uri.joinPath(extensionUri, 'src', 'assets', 'default_pack_icon.png')
+        vscode.Uri.joinPath(extensionUri, 'dist', 'assets', 'default_pack_icon.png')
     );
 
     return `
@@ -97,7 +97,7 @@ export function getSidebarHtml(webview: vscode.Webview, extensionUri: vscode.Uri
                             <img src="${logoUri}" alt="AddonCrate Logo">
                             <span>AddonCrate</span>
                         </a>
-                        <span class="version-badge">Alpha v0.1.0</span>
+                        <span class="version-badge">Alpha v0.1.1</span>
                     </div>
 
                 </div>

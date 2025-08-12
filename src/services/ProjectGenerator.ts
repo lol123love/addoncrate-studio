@@ -100,7 +100,7 @@ export class ProjectGenerator {
         if (iconSourceUri) {
             await vscode.workspace.fs.copy(iconSourceUri, iconDestUri, { overwrite: true });
         } else {
-            const defaultIconUri = vscode.Uri.joinPath(this.extensionUri, 'src', 'assets', 'default_pack_icon.png');
+            const defaultIconUri = vscode.Uri.joinPath(this.extensionUri, 'dist', 'assets', 'default_pack_icon.png');
             await vscode.workspace.fs.copy(defaultIconUri, iconDestUri, { overwrite: false });
         }
     }

@@ -10,7 +10,7 @@ interface IProject {
 }
 
 export function getOpenProjectHtml(webview: vscode.Webview, extensionUri: vscode.Uri, projects: IProject[]): string {
-    const defaultIconSvg = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'src', 'assets', 'default_pack_icon.png'));
+    const defaultIconSvg = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'dist', 'assets', 'default_pack_icon.png'));
 
     const projectListHtml = projects.map(p => `
         <button class="project-item" data-path="${p.folderPath}">

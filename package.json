@@ -2,11 +2,12 @@
   "name": "addoncrate-studio",
   "displayName": "AddonCrate Studio",
   "description": "A powerful toolset for creating and managing Minecraft Bedrock addons.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "lol123love",
   "engines": {
     "vscode": "^1.80.0"
   },
+  "icon": "dist/media/logo.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/lol123love/addoncrate-studio"
@@ -33,6 +34,9 @@
     "onCustomEditor:addoncrate.recipeEditor"
   ],
   "main": "./dist/extension.js",
+  "files": [
+    "dist"
+  ],
   "contributes": {
     "commands": [
       {
@@ -100,12 +104,13 @@
         }
       }
     },
+    
     "viewsContainers": {
       "activitybar": [
         {
           "id": "addoncrate-creator-sidebar",
           "title": "AddonCrate Studio",
-          "icon": "media/icon.svg"
+          "icon": "dist/media/icon.svg"
         }
       ]
     },
@@ -137,7 +142,7 @@
             "filenamePattern": "**/recipes/*.json"
           }
         ],
-        "priority": "default"
+        "priority": "builtin"
       }
     ],
     "configurationDefaults": {
@@ -159,6 +164,7 @@
     "@types/vscode": "^1.80.0",
     "@typescript-eslint/eslint-plugin": "^6.19.0",
     "@typescript-eslint/parser": "^6.19.0",
+    "copy-webpack-plugin": "^13.0.1",
     "eslint": "^8.56.0",
     "ts-loader": "^9.5.1",
     "typescript": "^5.3.3",

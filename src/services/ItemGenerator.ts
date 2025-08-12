@@ -137,7 +137,7 @@ export class ItemGenerator {
                 const sourceUri = vscode.Uri.file(this.options.iconPath);
                 await vscode.workspace.fs.copy(sourceUri, textureDestUri, { overwrite: true });
             } else {
-                const defaultIconUri = vscode.Uri.joinPath(this.extensionUri, 'src', 'assets', 'default_pack_icon.png');
+                const defaultIconUri = vscode.Uri.joinPath(this.extensionUri, 'dist', 'assets', 'default_pack_icon.png');
                 await vscode.workspace.fs.copy(defaultIconUri, textureDestUri);
             }
         }
